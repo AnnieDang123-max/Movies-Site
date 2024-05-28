@@ -63,3 +63,42 @@ input {
     text-align: center;
     background-color: #151f30;
 }
+
+#title span {
+    background-color: #131720;
+    padding: 8px;
+    font-weight: bold;
+}
+
+#title span.green {
+    color: #3FFF00;
+}
+
+#title span.orange {
+    color: orange;
+}
+
+#title span.red {
+    color: red;
+}
+
+#title .release_date {
+    font-weight: normal;
+    font-size: 15px;
+}
+
+/* 
+#overview {
+    /* position: absolute; */
+/* left: 0; */
+/* right: 0; */
+/* bottom: 0; */
+/* background-color: #131720; */
+/* padding: 10px; */
+/* transform: translateY(101%); */
+/* display: none; */
+/* } */
+
+/* #section:hover #overview {
+    display: block;
+} */

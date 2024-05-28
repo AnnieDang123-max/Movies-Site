@@ -1,4 +1,5 @@
 const url = new URL(location.href);
+console.log("Movie.js" + url);
 const movieId = url.searchParams.get("id");
 const movieTitle = url.searchParams.get("title");
 // console.log("broooo",movieId,movieTitle);
@@ -36,14 +37,14 @@ main.appendChild(div_new)
 returnReviews(APILINK);
 
 function returnReviews(url) {
-    console.log(url);
-    fetch(url + "movie/" + movieId).then(res => res.json())
-        .then(function (data) {
-            console.log(data);
+  console.log(url);
+  fetch(url + "movie/" + movieId).then(res => res.json())
+    .then(function (data) {
+      console.log(data);
 
-            data.forEach(review => {
-                const div_card = document.createElement('div');
-                div_card.innerHTML = `
+      data.forEach(review => {
+        const div_card = document.createElement('div');
+        div_card.innerHTML = `
           <div class="row">
             <div class="column">
               <div class="card" id="${review._id}">
@@ -55,18 +56,18 @@ function returnReviews(url) {
           </div>
         `
 
-                main.appendChild(div_row);
-            });
-        });
+        main.appendChild(div_row);
+      });
+    });
 }
 
 function editReview(id, review, user) {
 
-    const element = document.getElementById(id);
-    const reviewInputId = "review" + id
-    const userInputId = "user" + id
+  const element = document.getElementById(id);
+  const reviewInputId = "review" + id
+  const userInputId = "user" + id
 
-    element.innerHTML = `
+  element.innerHTML = `
               <p><strong>Review: </strong>
                 <input type="text" id="${reviewInputId}" value="${review}">
               </p>
@@ -80,44 +81,44 @@ function editReview(id, review, user) {
 }
 
 function saveReview(reviewInputId, userInputId, id = "") {
-    const review = document.getElementById(reviewInputId).value;
-    const user = document.getElementById(userInputId).value;
+  const review = document.getElementById(reviewInputId).value;
+  const user = document.getElementById(userInputId).value;
 
-    if (id) {
-        fetch(APILINK + id, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "user": user, "review": review })
-        }).then(res => res.json())
-            .then(res => {
-                console.log(res)
-                location.reload();
-            });
-    } else {
-        fetch(APILINK + "new", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "user": user, "review": review, "movieId": movieId })
-        }).then(res => res.json())
-            .then(res => {
-                console.log(res)
-                location.reload();
-            });
-    }
+  if (id) {
+    fetch(APILINK + id, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "user": user, "review": review })
+    }).then(res => res.json())
+      .then(res => {
+        console.log(res)
+        location.reload();
+      });
+  } else {
+    fetch(APILINK + "new", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "user": user, "review": review, "movieId": movieId })
+    }).then(res => res.json())
+      .then(res => {
+        console.log(res)
+        location.reload();
+      });
+  }
 }
 
 function deleteReview(id) {
-    fetch(APILINK + id, {
-        method: 'DELETE'
-    }).then(res => res.json())
-        .then(res => {
-            console.log(res)
-            location.reload();
-        });
+  fetch(APILINK + id, {
+    method: 'DELETE'
+  }).then(res => res.json())
+    .then(res => {
+      console.log(res)
+      location.reload();
+    });
 }
