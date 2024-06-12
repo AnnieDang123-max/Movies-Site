@@ -114,7 +114,7 @@ input {
 .container {
     margin-top: 20px;
     max-width: 1200px;
-    width: 95%;
+    /* width: 95%; */
 }
 
 .slider-wrapper {

@@ -90,9 +90,7 @@ const image_list = document.getElementById("image-list");
 fetch(SIMILAR_MOVIES_APILINK)
     .then(response => response.json())
     .then(response =>
-        response.results.forEach(movie => {
-            console.log("Movie: " + movie.title);
-
+        response.results.slice(0, 8).forEach(movie => {
             const movie_div = document.createElement('div');
 
             const movie_img = document.createElement('img');
